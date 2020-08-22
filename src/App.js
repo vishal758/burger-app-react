@@ -32,7 +32,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignUp: dispatch(actions.authCheckState())
+    onTryAutoSignUp: () => dispatch(actions.authCheckState())
   }
 }
 

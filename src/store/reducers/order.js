@@ -4,7 +4,8 @@ import { updateObject } from '../utility'
 const initialState = {
     orders: [],
     loading: false,
-    purchased: false
+    purchased: false,
+    isDeleted: false
 }
 
 const purchaseBurgerSuccess = (state, action) => {
@@ -19,7 +20,8 @@ const purchaseBurgerSuccess = (state, action) => {
 const fetchOrderSuccess = (state, action) => {
     return updateObject(state, {
         orders: action.orders,
-        loading: false
+        loading: false,
+        isDeleted: false
     }) 
 }
 const reducer = (state = initialState, action) => {
@@ -29,15 +31,21 @@ const reducer = (state = initialState, action) => {
         case actionTypes.PURCHASE_BURGER_FAIL:
             return updateObject(state, {loading: false})            
         case actionTypes.PURCHASE_BURGER_START:
-            return updateObject(state, {loading: true})            
+            return updateObject(state, {loading: true, isDeleted: false})            
         case actionTypes.PURCHASE_INIT:
-            return updateObject(state, {purchased: false})             
+            return updateObject(state, {purchased: false, isDeleted: false})             
         case actionTypes.FETCH_ORDERS_START:
-            return updateObject(state, {loading: true})            
+            return updateObject(state, {loading: true, isDeleted: false})            
         case actionTypes.FETCH_ORDERS_SUCCESS:
             return fetchOrderSuccess(state, action)
         case actionTypes.FETCH_ORDERS_FAIL:
-            return updateObject(state, {loading: false})            
+            return updateObject(state, {loading: false, isDeleted: false}) 
+        case actionTypes.DELETE_ORDER_START:
+            return updateObject(state, {loading: false, isDeleted: false}) 
+        case actionTypes.DELETE_ORDER_SUCCESS:
+            return updateObject(state, {loading: false, isDeleted: true})   
+        case actionTypes.DELETE_ORDER_FAIL:
+            return updateObject(state, {loading: true, isDeleted: false})
         default:
             return state
     }

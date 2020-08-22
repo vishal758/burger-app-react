@@ -22,6 +22,7 @@ class BurgerBuilder extends Component {
     
     componentDidMount() {
         this.props.onInitIngredients()
+        this.props.setDeleteToFalse()
     }
 
     //sum is the constantly updated current sum
@@ -119,7 +120,8 @@ const mapDispatchToProps = dispatch => {
         onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
         onInitIngredients: () => dispatch(actions.initIngredients()),
         onInitPurchase: () => dispatch(actions.purchaseInit()),
-        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+        setDeleteToFalse: () => dispatch(actions.deleteOrderStart())
     }
 }
 

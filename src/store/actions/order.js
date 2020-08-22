@@ -83,3 +83,37 @@ export const fetchOrders = (token) => {
             })
     }
 }
+
+export const deleteOrderSuccess = () => {
+    return {
+        type: actionTypes.DELETE_ORDER_SUCCESS,
+        // response: response
+    }
+}
+
+export const deleteOrderFail = (error) => {
+    return {
+        type: actionTypes.DELETE_ORDER_FAIL,
+        error: error
+    }
+}
+
+export const deleteOrderStart = () => {
+    return {
+        type: actionTypes.DELETE_ORDER_START
+    }
+}
+
+export const deleteOrder = (token, id) => {
+    return dispatch => {
+        dispatch(deleteOrderStart())
+        axios.delete('/orders/' + id + ".json?auth=" + token)
+        .then(response => {
+            console.log(response)
+            dispatch(deleteOrderSuccess())
+        }) 
+        .catch(err => {
+            dispatch(deleteOrderFail(err))
+        })
+    }
+}
