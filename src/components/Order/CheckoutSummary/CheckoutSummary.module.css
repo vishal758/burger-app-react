@@ -1,5 +1,6 @@
 .CheckoutSummary {
     text-align: center;
+    background-color: rgb(252, 247, 247);
     width: 80%;
     margin: auto;
 }
